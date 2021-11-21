@@ -12,9 +12,9 @@ pipeline {
                 sh 'terraform init'
             }
         }
-        stage('Terraform ${params.action}') {
+        stage('Terraform action needed') {
             steps {
-                sh 'doing ${params.action}'
+                input 'Please enter an action to perform with Terraform: '
             }
         }
     }
