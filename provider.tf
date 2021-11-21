@@ -14,3 +14,12 @@ provider "aws" {
   shared_credentials_file = "/aws/cred"
   profile                 = "customprofile"
 }
+
+# Terraform State backend Config
+terraform {
+  backend "s3" {
+    bucket = "bms-ge-tfapply-state-bucket"
+    key    = "ge/terraform.tfstate"
+    region = "ap-south-1"
+  }
+}
