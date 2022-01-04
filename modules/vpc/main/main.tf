@@ -12,3 +12,16 @@ resource "aws_vpc" "main" {
     },
   )
 }
+
+resource "aws_internet_gateway" "public" {
+  count      = local.internet_gateway_count
+  depends_on = [aws_vpc.main]
+  vpc_id     = aws_vpc.main.id
+
+  tags = merge(
+    var.tags,
+    {
+      "Name" = "${var.name_prefix}-public-igw"
+    },
+  )
+}
